@@ -6,18 +6,15 @@ import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
 
 export default function ProductDetails({ params }) {
-  const { id } = use(params)
+  const { id } = use(params);
   const { addToCart } = useCart();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
+  const product = products.find((item) => item.id === Number(id));
 
   if (!product) return <h1>Product Not Found</h1>;
 
   return (
     <>
-
       <section className="px-8 py-10 grid md:grid-cols-2 gap-10">
         <img
           src={product.image}
