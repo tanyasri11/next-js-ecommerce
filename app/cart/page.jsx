@@ -58,12 +58,12 @@ export default function CartPage() {
             ))}
 
             <h2 className="text-2xl font-bold mt-8">Total: ₹{totalPrice}</h2>
-            <a
+            <Link
               href="/checkout"
               className="inline-block mt-6 bg-black text-white px-6 py-3 rounded-lg"
             >
               Proceed to Checkout
-            </a>
+            </Link>
           </>
         )}
       </section>
