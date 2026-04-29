@@ -39,44 +39,15 @@
 // }
 
 
-"use client";
-
-import Navbar from "@/components/Navbar";
 import products from "@/data/products";
-import { useCart } from "@/context/CartContext";
+import ProductDetailsClient from "./ProductDetailsClient";
 
-export default function ProductDetails({ params }) {
-  const { addToCart } = useCart();
+export default async function ProductPage({ params }) {
+  const { id } = await params;
 
   const product = products.find(
-    (item) => item.id === Number(params.id)
+    (item) => item.id === Number(id)
   );
 
-  if (!product) return <h1>Product Not Found</h1>;
-
-  return (
-    <>
-      <Navbar />
-
-      <section className="px-8 py-10 grid md:grid-cols-2 gap-10">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full max-w-md rounded-xl"
-        />
-
-        <div>
-          <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-2xl mt-4">₹{product.price}</p>
-
-          <button
-            onClick={() => addToCart(product)}
-            className="mt-8 bg-black text-white px-6 py-3 rounded-lg"
-          >
-            Add To Cart
-          </button>
-        </div>
-      </section>
-    </>
-  );
+  return <ProductDetailsClient product={product} />;
 }
